@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.css",
+    "main.js": "/static/js/main.js",
+    "content.css": "/static/css/content.css",
+    "content.js": "/static/js/content.js",
+    "background.js": "/static/js/background.js",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.css",
+    "static/js/main.js"
+  ]
+}

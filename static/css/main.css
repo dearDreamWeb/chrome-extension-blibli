@@ -1,0 +1,43 @@
+html,
+body {
+    font-size: 14px;
+}
+
+#root {
+    width: 400px;
+    max-height: 600px;
+    padding: 8px;
+    overflow-y: auto;
+}
+
+h2 {
+    text-align: center;
+}
+
+#listMain .itemBox {
+    margin-bottom: 12px;
+}
+
+#listMain .itemBox .videoLink {
+    margin-bottom: 4px;
+    color: #4F14EE;
+    cursor: pointer;
+    text-decoration-line: underline;
+}
+
+#listMain .itemBox .itemBoxFooter {
+    display: flex;
+    justify-content: space-between;
+}
+
+.itemBoxFooter div:nth-child(1) span {
+    color: #F2BF4A;
+}
+
+.itemBoxFooter div:nth-child(2) span {
+    color: #E77A76;
+}
+
+.itemBoxFooter div:nth-child(3) span {
+    color: #61CABC;
+}
