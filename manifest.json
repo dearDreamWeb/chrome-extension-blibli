@@ -25,7 +25,7 @@
     "declarativeContent",
     "bookmarks",
     "webRequest",
-    "https://*/*",
+    "https://www.bilibili.com/*",
     "contextMenus"
   ],
   "host_permissions": ["https://*/*"],

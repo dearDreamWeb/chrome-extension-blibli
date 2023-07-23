@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 html,
 body {
     font-size: 14px;
@@ -6,7 +11,7 @@ body {
 #root {
     width: 400px;
     max-height: 600px;
-    padding: 8px;
+    padding: 8px 0;
     overflow-y: auto;
 }
 
@@ -15,7 +20,12 @@ h2 {
 }
 
 #listMain .itemBox {
-    margin-bottom: 12px;
+    margin-bottom: 8px;
+    padding: 4px 8px;
+}
+
+#listMain .itemBox:hover {
+    background-color: #eee;
 }
 
 #listMain .itemBox .videoLink {
