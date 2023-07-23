@@ -1,7 +1,7 @@
 {
-  "name": "Chrome插件V3",
+  "name": "B站点赞投币记录辅助器",
   "version": "1.0",
-  "description": "React开发chrome插件V3 Demo。",
+  "description": "记录B站点赞和投币的记录",
   "manifest_version": 3,
   "background": {
     "service_worker": "static/js/background.js"
@@ -47,7 +47,7 @@
       "48": "/images/app.png",
       "128": "/images/app.png"
     },
-    "default_title": "React CRX MV3"
+    "default_title": "B站点赞投币记录辅助器"
   },
   "icons": {
     "16": "/images/app.png",
