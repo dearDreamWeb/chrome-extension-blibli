@@ -11,7 +11,7 @@ chrome.storage.sync.get(DATAKEY, function (res) {
         if (objData[item.aid]) {
             objData[item.aid] = { ...objData[item.aid], like: true }
         } else {
-            objData[item.aid] = item;
+            objData[item.aid] = { ...item, like: true };
         }
     })
     let arr = Object.values(objData).sort((a, b) => b.updateTime - a.updateTime)
@@ -25,7 +25,7 @@ chrome.storage.sync.get(DATAKEY, function (res) {
             <div class='videoLink'>视频地址</div>
             <div class='itemBoxFooter'>
                 <div>点赞：<span>${item.like ? '有' : '无'}</span></div>
-                <div>投币数：<span>${item.eab_x || 0}</span></div>
+                <div>投币数：<span>${item.multiply || 0}</span></div>
                 <div>时间：<span>${new Date(item.updateTime).toLocaleString()}</span></div>
             </div>
         `

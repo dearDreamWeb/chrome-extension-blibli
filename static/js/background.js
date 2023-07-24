@@ -56,7 +56,7 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
             aid: data.aid,
             url,
             updateTime: Date.now(),
-            eab_x: data.eab_x || 0
+            multiply: data.multiply || 0
         }
         chrome.storage.sync.get(DATAKEY, function (oldData) {
             const { blibliData = { like: [], add: [] } } = oldData;
