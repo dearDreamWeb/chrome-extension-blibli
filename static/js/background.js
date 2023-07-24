@@ -31,9 +31,7 @@ function formDataToArray(formData) {
 //     { urls: ['https://api.bilibili.com/x/web-interface/wbi/view?*'] },
 //     ['responseHeaders']
 // );
-
 chrome.webRequest.onBeforeRequest.addListener((details) => {
-
     // 获取请求的详细信息
     // var url = details.url;
     // var headers = details.requestHeaders;
@@ -93,12 +91,3 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
     { urls: Object.values(URLS) },
     ['requestBody']
 );
-
-chrome.storage.onChanged.addListener(function (changes, namespace) {
-    for (let [key, { oldValue, newValue }] of Object.entries(changes)) {
-        console.log(
-            `Storage key "${key}" in namespace "${namespace}" changed.`,
-            `Old value was "${oldValue}", new value is "${newValue}".`
-        );
-    }
-});
