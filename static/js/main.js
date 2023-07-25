@@ -1,9 +1,13 @@
 const DATAKEY = 'blibliData'
+let activeIndex = 0;
+let objData = {}
+let showArr = []
+
+init()
 
 chrome.storage.sync.get(DATAKEY, function (res) {
     const { blibliData = { like: [], add: [] } } = res;
     console.log(res, blibliData)
-    let objData = {}
     blibliData.add.forEach((item) => {
         objData[item.aid] = item
     })
@@ -14,7 +18,25 @@ chrome.storage.sync.get(DATAKEY, function (res) {
             objData[item.aid] = { ...item, like: true };
         }
     })
-    let arr = Object.values(objData).sort((a, b) => b.updateTime - a.updateTime)
+    let allArr = Object.values(objData).sort((a, b) => b.updateTime - a.updateTime);
+    let likeArr = blibliData.like.map((item) => ({ ...item, like: true })).sort((a, b) => b.updateTime - a.updateTime)
+    let addArr = blibliData.add.sort((a, b) => b.updateTime - a.updateTime)
+    showArr = [allArr, likeArr, addArr]
+    renderList(showArr[0])
+});
+
+/**初始化 */
+function init() {
+    $('.optionItem').on('click', function () {
+        $('.optionItem').removeClass('activeOption')
+        $(this).toggleClass('activeOption')
+        renderList(showArr[$(this).index()])
+    })
+}
+
+/**渲染列表 */
+function renderList(arr) {
+    $('#listMain').html('')
     if (arr.length) {
         arr.forEach((item) => {
             const itemDom = `
@@ -40,4 +62,4 @@ chrome.storage.sync.get(DATAKEY, function (res) {
     } else {
         $('#listMain').append(`<div class='emptyData'>暂时无数据</div>`)
     }
-});
+}

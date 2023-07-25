@@ -1,21 +1,24 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
     <link rel="icon" href="/images/app.png" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>B站点赞投币记录辅助器</title>
     <script src="/static/js/jquery-3.6.4.min.js"></script>
     <script defer="defer" src="/static/js/main.js"></script>
-    <link href="/static/css/main.css" rel="stylesheet">
-</head>
+    <link href="/static/css/main.css" rel="stylesheet" />
+  </head>
 
-<body>
+  <body>
     <div id="root">
-        <h2 class="indexTitle">点赞投币历史</h2>
-        <div id="listMain"></div>
+      <h2 class="indexTitle">点赞投币历史</h2>
+      <div class="options">
+        <div class="optionItem activeOption">全部</div>
+        <div class="optionItem">点赞</div>
+        <div class="optionItem">投币</div>
+      </div>
+      <div id="listMain"></div>
     </div>
-</body>
-
+  </body>
 </html>

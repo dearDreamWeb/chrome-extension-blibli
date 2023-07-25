@@ -112,3 +112,18 @@ body {
   color: var(--primary-font-color);
   text-align: center;
 }
+
+.options {
+  display: flex;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.optionItem {
+  margin-left: 12px;
+  cursor: pointer;
+}
+
+.optionItem.activeOption {
+  color: var(--primary-color);
+}
