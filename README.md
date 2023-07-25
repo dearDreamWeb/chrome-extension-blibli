@@ -4,6 +4,10 @@ Chrome插件---记录B站点赞和投币的记录
 # 目的
 为了解决B站无法看到自己全部点过赞和投过币的记录，用该插件可以看到自己的点赞和投币记录。
 
+# 功能
+- [x] 查看点赞和投币历史记录，以及投币个数
+- [x] 可进行将点赞和投币分类查看
+
 # 效果
 ![效果图](https://resource.blogwxb.cn/chrome-extension-blibli/readme-1.png)
 
