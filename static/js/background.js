@@ -44,21 +44,18 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 });
 
 chrome.webRequest.onBeforeRequest.addListener((details) => {
-    console.log(333333333, domData);
-    // 获取请求的详细信息
-    // var url = details.url;
-    // var headers = details.requestHeaders;
-    // var method = details.method;
     if (!details.requestBody || !details.requestBody.formData) {
         return
     }
-    console.log(details);
-    // chrome.storage.sync.set({ [DATAKEY]: {like:[],add:[]} }, function () {
+
+    // 清除数据
+    // chrome.storage.sync.set({ [DATAKEY]: { like: [], add: [] } }, function () {
     //     chrome.storage.sync.get(DATAKEY, function (res) {
     //         console.log('----', res)
     //     });
     // });
     // return;
+
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         // 获取当前标签页的 URL
         var url = tabs[0].url;
@@ -66,6 +63,7 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
         const dataItem = {
             aid: data.aid,
             url,
+            videoCode: domData.videoCode,
             title: domData.title,
             imgUrl: domData.imgUrl,
             updateTime: Date.now(),

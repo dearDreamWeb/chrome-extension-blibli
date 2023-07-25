@@ -1,4 +1,10 @@
 :root {
-  --primary-color: #32b16c;
-  --primary-font-color: #fff;
+  --bg-color: #fff;
+  --title-bg-color: #555;
+  --title-font-color: #fff;
+  --primary-color: #00a1d6;
+  --hover-color: #00a1d6;
+  --primary-font-color: #3c3c3c;
+  --tip-bg-color: rgba(0, 0, 0, 0.8);
+  --tip-font-color: #fff;
 }

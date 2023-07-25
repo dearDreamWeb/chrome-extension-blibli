@@ -15,31 +15,29 @@ chrome.storage.sync.get(DATAKEY, function (res) {
         }
     })
     let arr = Object.values(objData).sort((a, b) => b.updateTime - a.updateTime)
-
-    const listMainDom = document.getElementById('listMain')
-    // document.getElementsByTagName('a')[0].getAttribute('data-link')
-    arr.forEach((item) => {
-        const itemDom = document.createElement('div')
-        itemDom.classList = ['itemBox']
-        itemDom.innerHTML = `
-            <div class='header'>
-                <div>${item.title || ''}</div>
-                <div class='videoLink'>视频地址</div>
-            </div>
-            <img  class='videoImg' src=https://${item.imgUrl} width='150'/>
-            <div class='itemBoxFooter'>
-                <div>点赞：<span>${item.like ? '有' : '无'}</span></div>
-                <div>投币数：<span>${item.multiply || 0}</span></div>
-                <div>时间：<span>${new Date(item.updateTime).toLocaleString()}</span></div>
-            </div>
-        `
-        listMainDom.appendChild(itemDom)
-    })
-    const videDomArr = document.getElementsByClassName('videoLink');
-    Array.from(videDomArr).forEach((dom, index) => {
-        dom.onclick = () => {
-            window.open(arr[index].url)
-        }
-    })
-    console.log('--1231--', arr)
+    if (arr.length) {
+        arr.forEach((item) => {
+            const itemDom = `
+                <div class='itemBox'>
+                    <div>
+                        <img class='videoImg' src='https:${item.imgUrl}' alt='封面图片' />
+                    </div>
+                    <div class='itemBoxFooter'>
+                        <div class='header' data-text='${item.title}'>
+                            <div class='videoLink' data-link='${item.url}'>${item.title || '未命名'}</div>
+                        </div>
+                        <div>点赞：<span>${item.like ? '有' : '无'}</span></div>
+                        <div>投币：<span>${item.multiply || 0}</span></div>
+                        <div>时间：<span>${new Date(item.updateTime).toLocaleString()}</span></div>
+                    </div>
+                </div>
+            `
+            $('#listMain').append(itemDom)
+        })
+        $('.videoLink').on('click', function () {
+            window.open($(this).attr('data-link'))
+        })
+    } else {
+        $('#listMain').append(`<div class='emptyData'>暂时无数据</div>`)
+    }
 });
