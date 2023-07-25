@@ -62,8 +62,8 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
         const data = formDataToArray(details.requestBody.formData)
         const dataItem = {
             aid: data.aid,
-            url,
             videoCode: domData.videoCode,
+            url,
             title: domData.title,
             imgUrl: domData.imgUrl,
             updateTime: Date.now(),
@@ -71,6 +71,7 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
         }
         chrome.storage.sync.get(DATAKEY, function (oldData) {
             const { blibliData = { like: [], add: [] } } = oldData;
+            // 点赞请求
             if (details.url === URLS.like) {
                 if (data.like === '1') {
                     if (blibliData.like.some((item) => item.aid === data.aid)) {
@@ -87,7 +88,10 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
             } else {
                 if (data.select_like === '1') {
                     blibliData.like.push(dataItem)
-                    blibliData.add.push(dataItem)
+                }
+                const index = blibliData.add.findIndex((item) => item.aid === dataItem.aid)
+                if (index > -1) {
+                    blibliData.add[index] = { ...blibliData.add[index], ...dataItem, multiply: blibliData.add[index].multiply + 1 }
                 } else {
                     blibliData.add.push(dataItem)
                 }
