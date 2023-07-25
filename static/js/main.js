@@ -22,7 +22,11 @@ chrome.storage.sync.get(DATAKEY, function (res) {
         const itemDom = document.createElement('div')
         itemDom.classList = ['itemBox']
         itemDom.innerHTML = `
-            <div class='videoLink'>视频地址</div>
+            <div class='header'>
+                <div>${item.title || ''}</div>
+                <div class='videoLink'>视频地址</div>
+            </div>
+            <img  class='videoImg' src=https://${item.imgUrl} width='150'/>
             <div class='itemBoxFooter'>
                 <div>点赞：<span>${item.like ? '有' : '无'}</span></div>
                 <div>投币数：<span>${item.multiply || 0}</span></div>

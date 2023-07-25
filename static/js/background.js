@@ -5,6 +5,7 @@ const URLS = {
     // 头部
     add: 'https://api.bilibili.com/x/web-interface/coin/add'
 }
+let domData = {}
 
 chrome.runtime.onInstalled.addListener(() => {
     chrome.contextMenus.create({
@@ -31,7 +32,19 @@ function formDataToArray(formData) {
 //     { urls: ['https://api.bilibili.com/x/web-interface/wbi/view?*'] },
 //     ['responseHeaders']
 // );
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+    if (message.type === 'messageType') {
+        // 处理消息
+        console.log(message.data);
+        domData = message.data;
+        // 发送响应消息给content script
+        sendResponse({ response: 'responseMessage' });
+    }
+});
+
 chrome.webRequest.onBeforeRequest.addListener((details) => {
+    console.log(333333333, domData);
     // 获取请求的详细信息
     // var url = details.url;
     // var headers = details.requestHeaders;
@@ -53,6 +66,8 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
         const dataItem = {
             aid: data.aid,
             url,
+            title: domData.title,
+            imgUrl: domData.imgUrl,
             updateTime: Date.now(),
             multiply: data.multiply || 0
         }

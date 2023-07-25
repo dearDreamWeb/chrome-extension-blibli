@@ -1,53 +1,73 @@
+@import url('./theme.css');
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html,
 body {
-    font-size: 14px;
+  font-size: 14px;
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
 }
 
 #root {
-    width: 400px;
-    max-height: 600px;
-    padding: 8px 0;
-    overflow-y: auto;
+  width: 400px;
+  max-height: 600px;
+  padding: 8px 0;
+  overflow-y: auto;
 }
 
 h2 {
-    text-align: center;
+  text-align: center;
+}
+
+#listMain {
+  margin-top: 12px;
 }
 
 #listMain .itemBox {
-    margin-bottom: 8px;
-    padding: 4px 8px;
+  margin-bottom: 8px;
+  padding: 4px 8px;
 }
 
 #listMain .itemBox:hover {
-    background-color: #eee;
+  background-color: #eee;
 }
 
 #listMain .itemBox .videoLink {
-    margin-bottom: 4px;
-    color: #4F14EE;
-    cursor: pointer;
-    text-decoration-line: underline;
+  margin-left: 8px;
+  margin-bottom: 4px;
+  color: #4f14ee;
+  cursor: pointer;
+  text-decoration-line: underline;
+}
+
+.header {
+  display: flex;
+  align-items: center;
 }
 
 #listMain .itemBox .itemBoxFooter {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .itemBoxFooter div:nth-child(1) span {
-    color: #F2BF4A;
+  /* color: #f2bf4a; */
+  color: #e77a76;
 }
 
 .itemBoxFooter div:nth-child(2) span {
-    color: #E77A76;
+  color: #e77a76;
 }
 
 .itemBoxFooter div:nth-child(3) span {
-    color: #61CABC;
+  /* color: #61cabc; */
+  color: #e77a76;
+}
+
+.videoImg {
+  max-height: 200px;
 }
