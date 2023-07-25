@@ -3,7 +3,9 @@ const URLS = {
     // 点赞
     like: 'https://api.bilibili.com/x/web-interface/archive/like',
     // 头部
-    add: 'https://api.bilibili.com/x/web-interface/coin/add'
+    add: 'https://api.bilibili.com/x/web-interface/coin/add',
+    // 一键三连
+    triple: 'https://api.bilibili.com/x/web-interface/archive/like/triple'
 }
 let domData = {}
 
@@ -85,7 +87,8 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
                     }
                     blibliData.like.splice(index, 1)
                 }
-            } else {
+            } else if (details.url === URLS.add) {
+                // 投币请求
                 if (data.select_like === '1') {
                     blibliData.like.push(dataItem)
                 }
@@ -94,6 +97,18 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
                     blibliData.add[index] = { ...blibliData.add[index], ...dataItem, multiply: blibliData.add[index].multiply + 1 }
                 } else {
                     blibliData.add.push(dataItem)
+                }
+            } else if (details.url === URLS.triple) {
+                // 一键三连
+                const likeIndex = blibliData.like.findIndex((item) => item.aid === dataItem.aid)
+                if (likeIndex < 0) {
+                    blibliData.like.push(dataItem)
+                }
+                const addIndex = blibliData.add.findIndex((item) => item.aid === dataItem.aid)
+                if (addIndex > -1) {
+                    blibliData.add[addIndex] = { ...blibliData.add[addIndex], multiply: 2 }
+                } else {
+                    blibliData.add.push({ ...dataItem, multiply: 2 })
                 }
             }
             chrome.storage.sync.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () {
