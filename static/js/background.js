@@ -28,13 +28,6 @@ function formDataToArray(formData) {
     return obj;
 }
 
-// chrome.webRequest.onCompleted.addListener((details) => {
-//     console.log(details)
-// },
-//     { urls: ['https://api.bilibili.com/x/web-interface/wbi/view?*'] },
-//     ['responseHeaders']
-// );
-
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     if (message.type === 'messageType') {
         // 处理消息
@@ -45,14 +38,15 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     }
 });
 
+
 chrome.webRequest.onBeforeRequest.addListener((details) => {
     if (!details.requestBody || !details.requestBody.formData) {
         return
     }
 
     // 清除数据
-    // chrome.storage.sync.set({ [DATAKEY]: { like: [], add: [] } }, function () {
-    //     chrome.storage.sync.get(DATAKEY, function (res) {
+    // chrome.storage.local.set({ [DATAKEY]: { like: [], add: [] } }, function () {
+    //     chrome.storage.local.get(DATAKEY, function (res) {
     //         console.log('----', res)
     //     });
     // });
@@ -71,7 +65,7 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
             updateTime: Date.now(),
             multiply: data.multiply || 0
         }
-        chrome.storage.sync.get(DATAKEY, function (oldData) {
+        chrome.storage.local.get(DATAKEY, function (oldData) {
             const { blibliData = { like: [], add: [] } } = oldData;
             // 点赞请求
             if (details.url === URLS.like) {
@@ -111,8 +105,8 @@ chrome.webRequest.onBeforeRequest.addListener((details) => {
                     blibliData.add.push({ ...dataItem, multiply: 2 })
                 }
             }
-            chrome.storage.sync.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () {
-                chrome.storage.sync.get(DATAKEY, function (res) {
+            chrome.storage.local.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () {
+                chrome.storage.local.get(DATAKEY, function (res) {
                     console.log('----', res)
                 });
             });

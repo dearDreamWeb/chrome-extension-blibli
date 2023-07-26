@@ -1,4 +1,4 @@
-@import url("./theme.css");
+@import url('./theme.css');
 
 * {
   margin: 0;
@@ -38,7 +38,7 @@ body {
 }
 
 #listMain .itemBox:hover {
-  background-color: #eee;
+  background-color: var(--section-hover-bg-color);
 }
 
 .videoLink {
@@ -107,7 +107,7 @@ body {
   max-height: 100px;
 }
 
-.emptyImg{
+.emptyImg {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -124,10 +124,16 @@ body {
   text-align: center;
 }
 
+.optionsBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}
+
 .options {
   display: flex;
   align-items: center;
-  margin-top: 12px;
 }
 
 .optionItem {
@@ -137,4 +143,59 @@ body {
 
 .optionItem.activeOption {
   color: var(--primary-color);
+}
+
+/* 开关 */
+.switch {
+  margin-right: 12px;
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--primary-color);
+  transition: 0.4s;
+  border-radius: 34px;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 0;
+  font-weight: 700;
+  color: #fff;
+}
+
+.slider:before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 2px;
+  bottom: 2px;
+  background-color: #fff;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+.switchInput:checked + .slider {
+  padding-left: 0;
+  padding-right: 12px;
+  background-color: var(--primary-color);
+}
+
+.switchInput:checked + .slider:before {
+  transform: translateX(36px);
 }

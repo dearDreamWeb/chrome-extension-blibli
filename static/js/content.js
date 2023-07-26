@@ -19,7 +19,7 @@ window.onload = () => {
 
     // 实时更新标题和封面图片
     if (dom && imgDom) {
-        chrome.storage.sync.get(DATAKEY, function (oldData) {
+        chrome.storage.local.get(DATAKEY, function (oldData) {
             const { blibliData = { like: [], add: [] } } = oldData;
             const index = blibliData.like.findIndex((item) => item.videoCode === videoCode)
             if (index > -1) {
@@ -39,7 +39,7 @@ window.onload = () => {
             }
 
             if (index > -1 || addIndex > -1) {
-                chrome.storage.sync.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () { });
+                chrome.storage.local.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () { });
             }
         })
     }

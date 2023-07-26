@@ -1,10 +1,23 @@
-:root {
+body[theme='classic'] {
   --bg-color: #fff;
   --title-bg-color: #555;
   --title-font-color: #fff;
   --primary-color: #00a1d6;
+  --section-hover-bg-color: #eee;
   --hover-color: #00a1d6;
   --primary-font-color: #3c3c3c;
   --tip-bg-color: rgba(0, 0, 0, 0.8);
   --tip-font-color: #fff;
+}
+
+body[theme='dark'] {
+  --bg-color: #555;
+  --title-bg-color: #636363;
+  --title-font-color: #fff;
+  --primary-color: #1dcdbc;
+  --section-hover-bg-color: #888888;
+  --hover-color: #1dcdbc;
+  --primary-font-color: #fff;
+  --tip-bg-color: rgba(255, 255, 255, 0.8);
+  --tip-font-color: #3c3c3c;
 }

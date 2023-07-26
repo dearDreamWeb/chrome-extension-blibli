@@ -1,11 +1,13 @@
 const DATAKEY = 'blibliData'
+const SWITCHTHEME = 'switchTheme'
+
 let activeIndex = 0;
 let objData = {}
 let showArr = []
 
 init()
 
-chrome.storage.sync.get(DATAKEY, function (res) {
+chrome.storage.local.get(DATAKEY, function (res) {
     const { blibliData = { like: [], add: [] } } = res;
     console.log(res, blibliData)
     blibliData.add.forEach((item) => {
@@ -27,6 +29,7 @@ chrome.storage.sync.get(DATAKEY, function (res) {
 
 /**初始化 */
 function init() {
+    toggleTheme()
     $('.optionItem').on('click', function () {
         $('.optionItem').removeClass('activeOption')
         $(this).toggleClass('activeOption')
@@ -43,12 +46,12 @@ function renderList(arr) {
                 <div class='itemBox'>
                     <div>
                         ${item.imgUrl ?
-                            `<img class='videoImg' src='https:${item.imgUrl}' alt='封面图片' />`
-                            : `<div class='emptyImg'>暂无图片</div>`
-                        }
+                    `<img class='videoImg' src='https:${item.imgUrl}' alt='封面图片' />`
+                    : `<div class='emptyImg'>暂无图片</div>`
+                }
                     </div>
                     <div class='itemBoxFooter'>
-                        <div class='header' data-text='${item.title}'>
+                        <div class='header' data-text='${item.title || '未命名'}'>
                             <div class='videoLink' data-link='${item.url}'>${item.title || '未命名'}</div>
                         </div>
                         <div>点赞：<span>${item.like ? '有' : '无'}</span></div>
@@ -65,4 +68,23 @@ function renderList(arr) {
     } else {
         $('#listMain').append(`<div class='emptyData'>暂时无数据</div>`)
     }
+}
+
+/**切换主题 */
+function toggleTheme() {
+    chrome.storage.local.get(SWITCHTHEME, function (res) {
+        const { switchTheme = 'classic' } = res;
+        $('body').attr('theme', switchTheme)
+        $('.slider').text(switchTheme === 'classic' ? '经典' : '暗黑')
+    })
+    $('.switchInput').on('click', function () {
+        chrome.storage.local.get(SWITCHTHEME, function (res) {
+            const { switchTheme = 'classic' } = res;
+            $('body').attr('theme', switchTheme)
+            const newValue = switchTheme === 'classic' ? 'dark' : 'classic'
+            $('body').attr('theme', newValue)
+            $('.slider').text(switchTheme === 'classic' ? '经典' : '暗黑')
+            chrome.storage.local.set({ [SWITCHTHEME]: newValue })
+        })
+    })
 }
