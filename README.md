@@ -7,6 +7,7 @@ Chrome插件---记录B站点赞和投币的记录
 # 功能
 - [x] 查看点赞和投币历史记录，以及投币个数
 - [x] 可进行将点赞和投币分类查看
+- [x] 切换主题 
 
 # 效果
 ![效果图](https://resource.blogwxb.cn/chrome-extension-blibli/readme-1.png)

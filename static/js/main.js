@@ -83,7 +83,7 @@ function toggleTheme() {
             $('body').attr('theme', switchTheme)
             const newValue = switchTheme === 'classic' ? 'dark' : 'classic'
             $('body').attr('theme', newValue)
-            $('.slider').text(switchTheme === 'classic' ? '经典' : '暗黑')
+            $('.slider').text(switchTheme !== 'classic' ? '经典' : '暗黑')
             chrome.storage.local.set({ [SWITCHTHEME]: newValue })
         })
     })

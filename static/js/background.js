@@ -38,7 +38,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
     }
 });
 
-
 chrome.webRequest.onBeforeRequest.addListener((details) => {
     if (!details.requestBody || !details.requestBody.formData) {
         return
