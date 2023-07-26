@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "https://www.bilibili.com/*"
       ],
       "css": [
         "static/css/content.css"
@@ -26,10 +26,9 @@
     "declarativeContent",
     "bookmarks",
     "webRequest",
-    "https://www.bilibili.com/*",
     "contextMenus"
   ],
-  "host_permissions": ["https://*/*"],
+  "host_permissions": ["https://www.bilibili.com/*"],
   "web_accessible_resources": [
     {
       "resources": [
