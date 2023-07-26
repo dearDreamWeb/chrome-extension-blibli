@@ -28,7 +28,7 @@
     "webRequest",
     "contextMenus"
   ],
-  "host_permissions": ["https://www.bilibili.com/*"],
+  "host_permissions": ["https://*.bilibili.com/*"],
   "web_accessible_resources": [
     {
       "resources": [

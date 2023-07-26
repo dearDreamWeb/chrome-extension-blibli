@@ -3,6 +3,9 @@ const DATAKEY = 'blibliData'
 const videoCode = getVideoCode()
 
 window.onload = () => {
+    if (!videoCode) {
+        return;
+    }
     const dom = document.querySelector('#viewbox_report h1')
     const imgDom = document.querySelector('source[type="image/avif"]')
     console.log('load finished-----')
@@ -44,9 +47,13 @@ window.onload = () => {
 
 /**通过地址栏获取videoCode */
 function getVideoCode() {
-    const url = location.href;
-    const pattern = /\/video\/([A-Za-z0-9]+)\//;
-    const match = url.match(pattern);
-    const bvNumber = match[1];
-    return bvNumber
+    try {
+        const url = location.href;
+        const pattern = /\/video\/([A-Za-z0-9]+)\//;
+        const match = url.match(pattern);
+        const bvNumber = match[1];
+        return bvNumber
+    } catch (err) {
+        return false
+    }
 }

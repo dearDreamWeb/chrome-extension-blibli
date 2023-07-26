@@ -42,7 +42,10 @@ function renderList(arr) {
             const itemDom = `
                 <div class='itemBox'>
                     <div>
-                        <img class='videoImg' src='https:${item.imgUrl}' alt='封面图片' />
+                        ${item.imgUrl ?
+                            `<img class='videoImg' src='https:${item.imgUrl}' alt='封面图片' />`
+                            : `<div class='emptyImg'>暂无图片</div>`
+                        }
                     </div>
                     <div class='itemBoxFooter'>
                         <div class='header' data-text='${item.title}'>
