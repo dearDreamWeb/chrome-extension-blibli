@@ -15,7 +15,8 @@ chrome.storage.local.get(DATAKEY, function (res) {
     })
     blibliData.like.forEach((item) => {
         if (objData[item.aid]) {
-            objData[item.aid] = { ...objData[item.aid], like: true }
+            const updateTime = Math.max(objData[item.aid].updateTime, item.updateTime)
+            objData[item.aid] = { ...objData[item.aid], updateTime, like: true }
         } else {
             objData[item.aid] = { ...item, like: true };
         }
