@@ -57,7 +57,7 @@ chrome.webRequest.onBeforeRequest.addListener(async (details) => {
         const data = formDataToArray(details.requestBody.formData)
         const { contentInfo = {} } = await localGetItem(CONTENTINFO)
         const videoCode = getVideoCode(url);
-        const contentData = contentInfo[getVideoCode(url)]
+        const contentData = contentInfo[getVideoCode(url)] || {}
         const dataItem = {
             aid: data.aid,
             videoCode: videoCode,
