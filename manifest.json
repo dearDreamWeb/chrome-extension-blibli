@@ -23,10 +23,7 @@
   ],
   "permissions": [
     "storage",
-    "declarativeContent",
-    "bookmarks",
-    "webRequest",
-    "contextMenus"
+    "webRequest"
   ],
   "host_permissions": ["https://*.bilibili.com/*"],
   "web_accessible_resources": [
