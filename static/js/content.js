@@ -6,9 +6,9 @@ window.onload = () => {
     if (!videoCode) {
         return;
     }
+    console.log('load finished-----')
     const dom = document.querySelector('#viewbox_report h1')
     const imgDom = document.querySelector('source[type="image/avif"]')
-    console.log('load finished-----')
     chrome.runtime.sendMessage({
         type: 'messageType', data: {
             videoCode,
@@ -16,6 +16,17 @@ window.onload = () => {
             imgUrl: imgDom ? imgDom.srcset : ''
         }
     });
+    main(15)
+}
+
+async function main(restart) {
+    if (restart <= 0) {
+        return
+    }
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    const dom = document.querySelector('#viewbox_report h1')
+    const imgDom = document.querySelector('source[type="image/avif"]')
+    console.log('---获取数据--', restart);
 
     // 实时更新标题和封面图片
     if (dom && imgDom) {
@@ -42,6 +53,9 @@ window.onload = () => {
                 chrome.storage.local.set({ [DATAKEY]: JSON.parse(JSON.stringify(blibliData)) }, function () { });
             }
         })
+    } else {
+        restart--
+        main(restart)
     }
 }
 
