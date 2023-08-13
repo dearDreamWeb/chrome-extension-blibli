@@ -18,7 +18,9 @@ Chrome插件---记录B站点赞和投币的记录
 <img height='500' src='https://resource.blogwxb.cn/chrome-extension-blibli/readme-3.png' />
 
 # 使用
-可以把项目下载到本地，打开`管理扩展程序`，打开`开发者模式`，最后将项目文件夹拖拽进来即可使用。   
+有两种方式可以使用该插件：
+1. 在chrome商店搜索`B站点赞投币记录辅助器`,添加即可，点击此[链接](https://chrome.google.com/webstore/detail/b%E7%AB%99%E7%82%B9%E8%B5%9E%E6%8A%95%E5%B8%81%E8%AE%B0%E5%BD%95%E8%BE%85%E5%8A%A9%E5%99%A8/bpaohnmhaajmcdcefahlcmlcljekaeai?utm_source=ext_sidebar&hl=zh-CN)即可跳转。  
+2. 也可以把项目下载到本地，打开`管理扩展程序`，打开`开发者模式`，最后将项目文件夹拖拽进来即可使用。   
 历史记录只会从使用该插件开始计算。
 
 # 问题
