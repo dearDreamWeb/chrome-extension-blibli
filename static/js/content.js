@@ -26,10 +26,17 @@ async function main(restart) {
     await new Promise((resolve) => setTimeout(resolve, 1000))
     const dom = document.querySelector('#viewbox_report h1')
     const imgDom = document.querySelector('source[type="image/avif"]')
-    console.log('---获取数据--', restart);
+    console.log('---获取数据--', restart, imgDom);
 
     // 实时更新标题和封面图片
     if (dom && imgDom) {
+        chrome.runtime.sendMessage({
+            type: 'messageType', data: {
+                videoCode,
+                title: dom ? dom.innerText : '',
+                imgUrl: imgDom ? imgDom.srcset : ''
+            }
+        });
         chrome.storage.local.get(DATAKEY, function (oldData) {
             const { blibliData = { like: [], add: [] } } = oldData;
             const index = blibliData.like.findIndex((item) => item.videoCode === videoCode)
