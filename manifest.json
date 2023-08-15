@@ -1,6 +1,6 @@
 {
   "name": "B站点赞投币记录辅助器",
-  "version": "1.1",
+  "version": "1.1.1",
   "description": "记录B站点赞和投币的记录",
   "manifest_version": 3,
   "background": {
